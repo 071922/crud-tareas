@@ -10,12 +10,12 @@ router.post('/crearTarea', (req, res) => {
     res.send('guardado correctamente')
 })
 
-router.put('/actualizarProducto', async (req, res) => {
+router.put('/actualizarProducto/:indicador', async (req, res) => {
     
     res.send('actualizado correctamente')
 })
 
-router.delete('/borrarProducto', async (req, res) => {
+router.delete('/borrarProducto/:indicador', async (req, res) => {
     
     res.send('Eliminado correctamente')
 })
