@@ -10,6 +10,8 @@ const lista = [
     {indicador: 3, descripcion: "desc3", estado: "pendiente"},
 ]
 
+
+
 router.get('/tareasCompletas', async (req, res) => {
 
     res.send(lista.filter((item) => item.estado === 'completada'))

@@ -10,6 +10,14 @@ const lista = [
     {indicador: 3, descripcion: "desc3", estado: "pendiente"},
 ]
 
+router.use((req, res, next) => {
+    console.log(req.body)
+
+    if(!req.body.indicador || !req.body.descripcion) return res.status(404).send('Atributos faltante')
+    
+    next();
+})
+
 router.post('/crearTarea', (req, res) => {
     
     const tarea = {
