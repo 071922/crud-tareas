@@ -2,6 +2,8 @@ const express = require('express')
 
 const app = express()
 
+app.use(express.json())
+
 //import routes
 const listView = require('./list-view-router')
 const listEdit = require('./list-edit-router')
