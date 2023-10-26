@@ -12,12 +12,12 @@ const lista = [
 
 router.get('/tareasCompletas', async (req, res) => {
 
-    res.send(lista.filter((item) => item.estado === 'completas'))
+    res.send(lista.filter((item) => item.estado === 'completada'))
 })
 
 router.get('/tareasIncompletas', async (req, res) => {
 
-    res.send(lista.filter((item) => item.estado === 'pendientes'))
+    res.send(lista.filter((item) => item.estado === 'pendiente'))
 })
 
 
