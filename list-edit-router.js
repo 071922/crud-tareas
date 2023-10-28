@@ -1,56 +1,53 @@
 const express = require('express')
 const router = express.Router()
 
+const ModeloTarea = require('./models/tareas')
 
 module.exports = router
 
-const lista = [
-    {indicador: 1, descripcion: "desc1", estado: "pendiente"},
-    {indicador: 2, descripcion: "desc2", estado: "completada"},
-    {indicador: 3, descripcion: "desc3", estado: "pendiente"},
-]
 
-router.use((req, res, next) => {
-    console.log(req.body)
+// middleware campos faltantes
+function middlewareAtr(req, res, next){
 
     if(!req.body.indicador || !req.body.descripcion) return res.status(404).send('Atributos faltante')
-    
     next();
-})
+}
 
-router.post('/crearTarea', (req, res) => {
+// middleware parametros faltantes
+function middlewareParams(req, res, next){
+    console.log(req.params)
+
+    if(!req.params.indicador) return res.status(404).send('Parametro faltante')
+    next();
+}
+
+router.post('/crearTarea', middlewareAtr, (req, res) => {
     
-    const tarea = {
+    const nuevatarea = new ModeloTarea({
         indicador: req.body.indicador,
         descripcion: req.body.descripcion,
         estado: 'pendiente'
-    }
-    lista.push(tarea)
+    })
+    
+    nuevatarea.save()
 
-    res.send('guardado correctamente')
+    res.send('Tarea Agregada')
 })
 
-router.put('/actualizarTarea/:indicador', async (req, res) => {
+router.put('/actualizarTarea/:indicador', middlewareParams, async (req, res) => {
 
-    const tarea = lista.find((item) => item.indicador === req.params.indicador)
-    if(!tarea) return res.status(404).send('Tarea no encontrada')
-
-    lista.map((item) => {
-        if(item.indicador === req.params.indicador){
-            item.estado = 'completada'
-        }
+    await ModeloTarea.findOneAndUpdate({ indicador: req.params.indicador },{
+        estado: 'completado'
     })
     
     res.send('actualizado correctamente')
 })
 
-router.delete('/borrarProducto/:indicador', async (req, res) => {
+router.delete('/borrarTarea/:indicador', middlewareParams, async (req, res) => {
     
-    const tarea = lista.find((item) => item.indicador === req.params.indicador)
-    if(!tarea) return res.status(404).send('Tarea no encontrada')
+    await ModeloTarea.findOneAndDelete({ indicador: req.params.indicador })
+    console.log("tarea eliminada api: ", req.params.indicador)
 
-    lista = lista.filter((item) => item.indicador !== req.params.indicador)
-    
     res.send('borrado correctamente')
 })
 

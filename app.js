@@ -3,7 +3,13 @@ const cors = require('cors')
 
 const app = express()
 
+const archivoBD = require('./conexion')
+
 app.use(express.json())
+
+app.use(cors({
+    origin: "http://localhost:3000"
+}))
 
 //import routes
 const listView = require('./list-view-router')
@@ -15,9 +21,7 @@ app.use('/editar', listEdit)
 
 const PORT = process.env.PORT || 5000
 
-app.use(cors({
-    origin: "http://localhost:5000"
-}))
+
 
 app.get('/', (req, res) => {
     res.end('Bienvenido al backend')
