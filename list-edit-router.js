@@ -29,6 +29,7 @@ router.post('/crearTarea', middlewareAtr, (req, res) => {
         estado: 'pendiente'
     })
     
+    
     nuevatarea.save()
     console.log("tarea creada api: ", req.body.indicador)
 
