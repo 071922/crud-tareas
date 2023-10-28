@@ -30,6 +30,7 @@ router.post('/crearTarea', middlewareAtr, (req, res) => {
     })
     
     nuevatarea.save()
+    console.log("tarea creada api: ", req.body.indicador)
 
     res.send('Tarea Agregada')
 })
@@ -39,6 +40,7 @@ router.put('/actualizarTarea/:indicador', middlewareParams, async (req, res) => 
     await ModeloTarea.findOneAndUpdate({ indicador: req.params.indicador },{
         estado: 'completado'
     })
+    console.log("tarea actualizada api: ", req.params.indicador)
     
     res.send('actualizado correctamente')
 })
