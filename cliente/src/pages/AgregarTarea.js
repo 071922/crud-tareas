@@ -24,7 +24,15 @@ function AgregarTarea(){
             estado: estado
         }
 
-        if(indicador!=='' && descripcion!==''){
+        if(indicador.length < 3){
+            Swal.fire({
+                title: 'Indicador debe contener 3 o mas letras',
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#F66A0D'
+              })
+        }
+        else if(indicador!==''){
             
             clienteAxios.post('editar/crearTarea', body)
             .then(res => {

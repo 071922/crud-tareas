@@ -9,7 +9,7 @@ module.exports = router
 // middleware campos faltantes
 function middlewareAtr(req, res, next){
 
-    if(!req.body.indicador || !req.body.descripcion) return res.status(404).send('Atributos faltante')
+    if(!req.body.indicador) return res.status(404).send('Atributos faltante')
     next();
 }
 
