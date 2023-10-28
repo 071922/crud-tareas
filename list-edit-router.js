@@ -36,7 +36,7 @@ router.put('/actualizarTarea/:indicador', async (req, res) => {
     res.send('actualizado correctamente')
 })
 
-router.delete('/borrarProducto/:indicador', async (req, res) => {
+router.delete('/borrarTarea/:indicador', async (req, res) => {
     
     const tarea = lista.find((item) => item.indicador === req.params.indicador)
     if(!tarea) return res.status(404).send('Tarea no encontrada')
