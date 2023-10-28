@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://douglasdv210:1047471147@gestorproductos.rnn3m.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://winstonVal:071922w@gestorproductos.rnn3m.mongodb.net/?retryWrites=true&w=majority')
 
 
 const objetobd = mongoose.connection
