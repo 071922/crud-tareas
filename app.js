@@ -19,8 +19,7 @@ app.use('/ver', listView)
 app.use('/editar', listEdit)
 
 
-const PORT = process.env.PORT || 5000
-
+const PORT = 5000
 
 
 app.get('/', (req, res) => {
